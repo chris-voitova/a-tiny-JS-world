@@ -27,5 +27,63 @@
    print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny');
    print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny', 'div');
    */
+const cat = {
+  species: "cat",
+  name: "Expert",
+  gender: "male",
+  legs: 4,
+  saying: "meow!",
+};
 
+const dog = {
+  species: "dog",
+  name: "Joker",
+  gender: "male",
+  legs: 4,
+  saying: "woof-woof!",
+  friends: [cat.name],
+};
 
+const man = {
+  species: "human",
+  name: "Mark",
+  gender: "male",
+  legs: 2,
+  hands: 2,
+  saying: "What's up?",
+};
+
+const woman = {
+  species: "human",
+  name: "Alice",
+  gender: "female",
+  legs: 2,
+  hands: 2,
+  saying: "Hi!",
+  friends: [cat.name, dog.name, man.name],
+};
+const catWoman = {
+  species: "human",
+  name: "Wonder Alice",
+  gender: "female",
+  legs: 2,
+  hands: 2,
+  __proto__: cat,
+};
+
+function preparePrint(obj) {
+  return `
+   <strong>${obj.species}</strong>;
+	name: <strong>${obj.name}</strong>;
+	gender: ${obj.gender}; 
+	legs: ${obj.legs};
+	${obj.hasOwnProperty("hands") ? `hands: ${obj.hands};` : ""}
+	saying: ${obj.saying};
+	${obj.hasOwnProperty("friends") ? `friends: ${obj.friends};` : ""}`;
+}
+
+print(preparePrint(cat), "div");
+print(preparePrint(dog), "div");
+print(preparePrint(man), "div");
+print(preparePrint(woman), "div");
+print(preparePrint(catWoman), "div");
