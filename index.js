@@ -73,17 +73,17 @@ const catWoman = {
 
 function preparePrint(obj) {
   return `
-	<strong>${obj.species}</strong>;
-	name: <strong>${obj.name}</strong>;
-	gender: ${obj.gender}; 
-	legs: ${obj.legs};
-	${obj.hasOwnProperty("hands") ? `hands: ${obj.hands};` : ""}
-	saying: ${obj.saying};
-	${
-	obj.hasOwnProperty("friends") && obj.friends.length > 0
-		? `friends: ${obj.friends};`
-		: ""
-	}`;
+   <strong>${obj.species}</strong>;
+   name: <strong>${obj.name}</strong>;
+   gender: ${obj.gender}; 
+   legs: ${obj.legs};
+   ${obj.hasOwnProperty("hands") ? `hands: ${obj.hands};` : ""}
+   saying: ${obj.saying};
+   ${
+     obj.hasOwnProperty("friends") && obj.friends.length > 0
+       ? `friends: ${obj.friends};`
+       : ""
+   }`;
 }
 
 [cat, dog, man, woman, catWoman].forEach((item) =>
