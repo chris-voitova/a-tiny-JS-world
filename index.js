@@ -49,7 +49,7 @@ const man = {
   name: "Mark",
   gender: "male",
   legs: 2,
-  handsText: 2,
+  hands: 2,
   saying: "What's up?",
 };
 
@@ -58,7 +58,7 @@ const woman = {
   name: "Alice",
   gender: "female",
   legs: 2,
-  handsText: 2,
+  hands: 2,
   saying: "Hi!",
   friends: [cat.name, dog.name, man.name],
 };
@@ -67,11 +67,11 @@ const catWoman = {
   name: "Wonder Alice",
   gender: "female",
   legs: 2,
-  handsText: 2,
+  hands: 2,
   __proto__: cat,
 };
 
-function preparePrint({ species, name, gender, legs, handsText, saying, friends }) {
+function preparePrint({ species, name, gender, legs, hands, saying, friends }) {
   const hasFriends = friends && friends.length > 0;
   return `
    <strong>${species}</strong>;
@@ -79,7 +79,7 @@ function preparePrint({ species, name, gender, legs, handsText, saying, friends 
    gender: ${gender}; 
    legs: ${legs};
    saying: ${saying};
-   ${handsText ? `hands: ${handsText}` : ""}
+   ${hands ? `hands: ${hands}` : ""}
 	${hasFriends ? `friends: ${friends}` : ""}`;
 }
 
