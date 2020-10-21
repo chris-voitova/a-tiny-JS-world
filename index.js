@@ -27,58 +27,69 @@
    print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny');
    print('human; <strong>John</strong>; male; 2; 2; <em>Hello world!</em>; Rex, Tom, Jenny', 'div');
    */
-const cat = {
-  species: "cat",
-  name: "Expert",
-  gender: "male",
-  legs: 4,
-  saying: "meow!",
-};
 
-const dog = {
-  species: "dog",
-  name: "Joker",
-  gender: "male",
-  legs: 4,
-  saying: "woof-woof!",
-  friends: [cat.name],
-};
+class Inhabitant {
+  constructor(name, gender, friends = "", legs = 4, species = "unknown") {
+    this.name = name;
+    this.gender = gender;
+    this.legs = legs;
+    this.species = species;
+    this.friends = friends;
+  }
+  saying() {
+    return "Hi!";
+  }
+}
 
-const man = {
-  species: "human",
-  name: "Mark",
-  gender: "male",
-  legs: 2,
-  hands: 2,
-  saying: "What's up?",
-};
+class Cat extends Inhabitant {
+  constructor(name, gender, friends) {
+    super(name, gender, friends);
+    this.species = "cat";
+  }
+  saying() {
+    return "meow!";
+  }
+}
+class Dog extends Inhabitant {
+  constructor(name, gender, friends) {
+    super(name, gender, friends);
+    this.species = "dog";
+  }
+  saying() {
+    return "woof-woof!";
+  }
+}
+class Human extends Inhabitant {
+  constructor(name, gender, friends) {
+    super(name, gender, friends);
+    this.species = "human";
+    this.legs = 2;
+    this.hands = 2;
+  }
+}
+class CatWoman extends Cat {
+  constructor(name, gender, friends) {
+    super(name, gender, friends);
+    this.species = "human";
+    this.legs = 2;
+    this.hands = 2;
+  }
+}
 
-const woman = {
-  species: "human",
-  name: "Alice",
-  gender: "female",
-  legs: 2,
-  hands: 2,
-  saying: "Hi!",
-  friends: [cat.name, dog.name, man.name],
-};
-const catWoman = {
-  species: "human",
-  name: "Wonder Alice",
-  gender: "female",
-  legs: 2,
-  hands: 2,
-  __proto__: cat,
-};
+const cat = new Cat("Expert", "male");
+const dog = new Dog("Joker", "male", [cat.name]);
+const man = new Human("Mark", "male");
+const woman = new Human("Alice", "female", [cat.name, dog.name, man.name]);
+const catWoman = new CatWoman("Wonder Alice", "female");
 
 function preparePrint({ species, name, gender, legs, hands, saying, friends }) {
   const hasFriends = friends && friends.length > 0;
   return `
    <strong>${species}</strong>;
    name: <strong>${name}</strong>;
-   gender: ${gender}; 
+   gender: ${gender};
    legs: ${legs};
-   saying: ${saying};
+   saying: ${saying()};
    ${hands ? `hands: ${hands}` : ""}
 	${hasFriends ? `friends: ${friends}` : ""}`;
 }
